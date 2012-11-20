@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pig-latin by vidyasagar1729</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pig-latin</h1>
+        <p>Pig Latin</p>
+
+        <p class="view"><a href="https://github.com/vidyasagar1729/pig-latin">View the Project on GitHub <small>vidyasagar1729/pig-latin</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/vidyasagar1729/pig-latin/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/vidyasagar1729/pig-latin/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/vidyasagar1729/pig-latin">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>Pig Latin.</h2>
+
+<p>Assuming we know basics of hadoop.
+Pig is a higher level abstraction for data users over Hadoop, without needing to write data processing streams in lower level Java language. Pig has grown from 0.1 to 0.9 over last few years</p>
+
+<h3>What is Pig Latin</h3>
+
+<p>Pig is a syntax/engine, a language named Pig Latin to run parallel programs over hadoop. As any other language it has its own data operators and also some UDF (user defined functions) for specific purposes.</p>
+
+<blockquote>
+<p>Pig is an Apache open source project. This means users are free to download it as source or binary, use it for themselves, contribute to it, and—under the terms of the Apache License—use it in their products and change it as they see fit.</p>
+</blockquote>
+
+<h3>Mapreduce</h3>
+
+<p>Mapreduce is a parallel data processing paradigm, its comprises of a set of jobs map, shuffle, reduce. Map part takes the raw inputs individually and processed them and buckets them w.r.t key-value. As the data and processed are distributed over several machines shuffle segregated data based on keys and reduce phase does the final manipulation of data and export out.</p>
+
+<p>In Hadoop</p>
+
+<p>Mapper: Takes InputFormat class for various input formats
+Shuffle: Partioner class
+Reduce: OutputFormat class</p>
+
+<p>Pig generates a mapreduce layer over Hadoop, for processing</p>
+
+<pre><code>-- Load input from the file named Mary, and call the single
+-- field in the record 'line'.
+input = load 'mary' as (line);
+-- TOKENIZE splits the line into a field for each word.
+-- flatten will take the collection of records returned by
+-- TOKENIZE and produce a separate record for each one, calling the single
+-- field in the record word.
+words = foreach input generate flatten(TOKENIZE(line)) as word;
+-- Now group them together by each word.
+grpd = group words by word;
+-- Count them.
+cntd = foreach grpd generate group, COUNT(words);
+-- Print out the results.
+dump cntd;
+</code></pre>
+
+<h3>Authors and Contributors</h3>
+
+<p>Nov 2012, Vidyasagar (<a href="https://github.com/vidyasagar1729" class="user-mention">@vidyasagar1729</a>)</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/vidyasagar1729">vidyasagar1729</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
